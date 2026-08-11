@@ -175,4 +175,107 @@ namespace neon {
                        size_t Nx, size_t Ny, size_t Nz);
 }
 
+// RISC-V kernels
+namespace riscv {
+    void mem_float(float* C, const float* A, const float* B,
+                   float alpha, float beta,
+                   size_t z_begin, size_t z_end,
+                   size_t Nx, size_t Ny, size_t Nz);
+    
+    void mem_double(double* C, const double* A, const double* B,
+                    double alpha, double beta,
+                    size_t z_begin, size_t z_end,
+                    size_t Nx, size_t Ny, size_t Nz);
+    
+    void stencil_float(float* C, const float* A,
+                       float a0, float a1,
+                       size_t z_begin, size_t z_end,
+                       size_t Nx, size_t Ny, size_t Nz);
+    
+    void stencil_double(double* C, const double* A,
+                        double a0, double a1,
+                        size_t z_begin, size_t z_end,
+                        size_t Nx, size_t Ny, size_t Nz);
+    
+    void mem_int8(int8_t* C, const int8_t* A, const int8_t* B,
+                  int8_t alpha, int8_t beta,
+                  size_t z_begin, size_t z_end,
+                  size_t Nx, size_t Ny, size_t Nz);
+    
+    void stencil_int8(int8_t* C, const int8_t* A,
+                      int8_t a0, int8_t a1,
+                      size_t z_begin, size_t z_end,
+                      size_t Nx, size_t Ny, size_t Nz);
+}
+
+// Microcontroller kernels
+namespace microcontroller {
+    // Arduino kernels (integer-based)
+    void mem_arduino(int16_t* C, const int16_t* A, const int16_t* B,
+                     int16_t alpha, int16_t beta,
+                     size_t z_begin, size_t z_end,
+                     size_t Nx, size_t Ny, size_t Nz);
+    
+    void mem_arduino_int8(int8_t* C, const int8_t* A, const int8_t* B,
+                           int8_t alpha, int8_t beta,
+                           size_t z_begin, size_t z_end,
+                           size_t Nx, size_t Ny, size_t Nz);
+    
+    void stencil_arduino_3point(int16_t* C, const int16_t* A,
+                               int16_t a0, int16_t a1,
+                               size_t z_begin, size_t z_end,
+                               size_t Nx, size_t Ny, size_t Nz);
+    
+    // Raspberry Pi kernels
+    void mem_rpi_armv6(float* C, const float* A, const float* B,
+                       float alpha, float beta,
+                       size_t z_begin, size_t z_end,
+                       size_t Nx, size_t Ny, size_t Nz);
+    
+    void stencil_rpi(float* C, const float* A,
+                     float a0, float a1,
+                     size_t z_begin, size_t z_end,
+                     size_t Nx, size_t Ny, size_t Nz);
+    
+    // ESP32 kernels
+    void mem_esp32(float* C, const float* A, const float* B,
+                   float alpha, float beta,
+                   size_t z_begin, size_t z_end,
+                   size_t Nx, size_t Ny, size_t Nz);
+    
+    // Legacy x86 kernels
+    namespace legacy_x86 {
+        void mem_float_legacy(float* C, const float* A, const float* B,
+                              float alpha, float beta,
+                              size_t z_begin, size_t z_end,
+                              size_t Nx, size_t Ny, size_t Nz);
+        
+        void stencil_float_legacy(float* C, const float* A,
+                                  float a0, float a1,
+                                  size_t z_begin, size_t z_end,
+                                  size_t Nx, size_t Ny, size_t Nz);
+    }
+    
+    // Universal fallback kernels (work on any platform)
+    void mem_universal(float* C, const float* A, const float* B,
+                       float alpha, float beta,
+                       size_t z_begin, size_t z_end,
+                       size_t Nx, size_t Ny, size_t Nz);
+    
+    void stencil_universal(float* C, const float* A,
+                           float a0, float a1,
+                           size_t z_begin, size_t z_end,
+                           size_t Nx, size_t Ny, size_t Nz);
+    
+    void mem_universal_int8(int8_t* C, const int8_t* A, const int8_t* B,
+                             int8_t alpha, int8_t beta,
+                             size_t z_begin, size_t z_end,
+                             size_t Nx, size_t Ny, size_t Nz);
+    
+    void stencil_universal_int8(int8_t* C, const int8_t* A,
+                               int8_t a0, int8_t a1,
+                               size_t z_begin, size_t z_end,
+                               size_t Nx, size_t Ny, size_t Nz);
+}
+
 } // namespace kernels
